@@ -2,9 +2,14 @@
 // Write a function that will only accept numbers and attend to
 // all TypeScript weakness flags.
 // : number
-const reviewTotalDisplay = document.querySelector("#reviews");
 
-const reviews = [
+function calculateTotalStars(reviews: { stars: number }[]): number {
+  return reviews.reduce((total, review) => {
+      return total + review.stars;
+  }, 0); // Initial value set to 0 (number type)
+}
+
+const reviews: { name: string; stars: number; loyaltyUser: boolean; date: string }[] = [
   {
     name: "Sheia",
     stars: 5,
@@ -24,3 +29,12 @@ const reviews = [
     date: "27-03-2021",
   },
 ];
+
+const reviewTotalDisplay = document.querySelector<HTMLDivElement>("#reviews");
+if (reviewTotalDisplay) {
+  const totalStars = calculateTotalStars(reviews);
+  reviewTotalDisplay.textContent = `Total Stars: ${totalStars}`;}
+
+  else {
+    console.error("Element with ID '#reviews' not found.");}
+  
