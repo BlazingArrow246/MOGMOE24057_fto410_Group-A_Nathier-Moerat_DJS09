@@ -3,8 +3,15 @@
 // all TypeScript weakness flags.
 // : number
 
-const reviewTotalDisplay = document.querySelector("#reviews");
+ //Selecting elements from the DOM   
 
+const returningUserDisplay = document.querySelector("#returning-user");
+const userNameDisplay = document.querySelector("#user");
+const reviewTotalDisplay = document.querySelector("#reviews") as HTMLElement | null;
+
+let isOpen : boolean
+
+//Array of review objects
 const reviews: { name: string; stars: number; loyaltyUser: boolean; date: string }[] = [
   {
     name: "Sheia",
@@ -26,12 +33,39 @@ const reviews: { name: string; stars: number; loyaltyUser: boolean; date: string
   },
 ];
 
-function showReviewTotal (value : number, reviewer: string) {
-  reviewTotalDisplay.innerHTML = 
-  'review total: ' +
-   value.toString()+
-    '| last reviewed by' + 
+//Displays name of the reviewer, total number of reviews, and if they are a loyalty user
+
+function showReviewTotal (value : number, reviewer: string, isLoyalty : boolean) {
+  const iconDisplay = isLoyalty ? "⭐" : "👤";
+  if (reviewTotalDisplay) {
+    reviewTotalDisplay.innerHTML = 
+      'review total: ' +
+      value.toString() +  //Reviews total
+      ' ' +
+      iconDisplay +  //Loyalty icon
+      ' ' +
+      reviewer;  //Reviewer name
+  }
   reviewer;
 }
 
-showReviewTotal(reviews.length, reviews[0].name);
+showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser); //Dynamically updates showReviewTotal function
+
+//user data object
+const you = {
+  userName: "Bobby",
+  isReturning: true,
+}
+//Updates DOM with user information
+function populateUser(isReturning: boolean, userName : string){
+  if(isReturning){
+    if (returningUserDisplay) {
+        returningUserDisplay.innerHTML = "back";
+    }
+  }
+  if (userNameDisplay) {
+    userNameDisplay.innerHTML = userName;
+  }
+}
+
+populateUser(you.isReturning, you.userName)
