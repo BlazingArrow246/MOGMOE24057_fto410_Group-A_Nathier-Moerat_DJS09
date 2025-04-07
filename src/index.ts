@@ -26,8 +26,8 @@ const reviews: { name: string; stars: number; loyaltyUser: boolean; date: string
   },
 ];
 
-function showReviewTotal (value : string) {
-  reviewTotalDisplay!.innerHTML = value.toString();
+function showReviewTotal (value : number) {
+  reviewTotalDisplay.innerHTML = 'review total: ' + value.toString();
 }
 
-showReviewTotal("Total reviews: " + reviews.length);
+showReviewTotal(reviews.length);
