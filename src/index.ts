@@ -26,8 +26,12 @@ const reviews: { name: string; stars: number; loyaltyUser: boolean; date: string
   },
 ];
 
-function showReviewTotal (value : number) {
-  reviewTotalDisplay.innerHTML = 'review total: ' + value.toString();
+function showReviewTotal (value : number, reviewer: string) {
+  reviewTotalDisplay.innerHTML = 
+  'review total: ' +
+   value.toString()+
+    '| last reviewed by' + 
+  reviewer;
 }
 
-showReviewTotal(reviews.length);
+showReviewTotal(reviews.length, reviews[0].name);
