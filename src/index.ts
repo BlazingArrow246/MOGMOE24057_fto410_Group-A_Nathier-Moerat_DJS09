@@ -3,11 +3,7 @@
 // all TypeScript weakness flags.
 // : number
 
-function calculateTotalStars(reviews: { stars: number }[]): number {
-  return reviews.reduce((total, review) => {
-      return total + review.stars;
-  }, 0); // Initial value set to 0 (number type)
-}
+const reviewTotalDisplay = document.querySelector("#reviews");
 
 const reviews: { name: string; stars: number; loyaltyUser: boolean; date: string }[] = [
   {
@@ -30,11 +26,8 @@ const reviews: { name: string; stars: number; loyaltyUser: boolean; date: string
   },
 ];
 
-const reviewTotalDisplay = document.querySelector<HTMLDivElement>("#reviews");
-if (reviewTotalDisplay) {
-  const totalStars = calculateTotalStars(reviews);
-  reviewTotalDisplay.textContent = `Total Stars: ${totalStars}`;}
+function showReviewTotal (value : string) {
+  reviewTotalDisplay!.innerHTML = value.toString();
+}
 
-  else {
-    console.error("Element with ID '#reviews' not found.");}
-  
+showReviewTotal("Total reviews: " + reviews.length);
