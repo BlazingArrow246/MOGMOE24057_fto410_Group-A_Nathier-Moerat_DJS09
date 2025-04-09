@@ -1,12 +1,8 @@
-// Number Types mini-challenge 10 10.2
-// Write a function that will only accept numbers and attend to
-// all TypeScript weakness flags.
-// : number
+
 
  //Selecting elements from the DOM   
 const propertyContainer = document.querySelector(".properties") 
 const footer = document.querySelector(".footer")
-
 import { showReviewTotal, populateUser } from "./utils";
 let isOpen : boolean
 
@@ -39,21 +35,37 @@ date: string,
 ];
 
 //user data object
-const you : {
-  firstName : string,
-  lastName : string,
-  isReturning : boolean,
-  age : number,
-  stayedAt: string[],
-} = {
+//const you : {
+ // firstName : string,
+ // lastName : string,
+ // isReturning : boolean,
+ // age : number,
+ // stayedAt: string[],
+//} = {
+  //firstName: "John",
+ // lastName: "Brown",
+ // isReturning: true,
+  //age: 35,
+  //stayedAt: ["floride-home", "oman-flat", "tokyo-bungalow"],
+//}
+
+const ADMIN ='admin'
+const READ_ONLY = 'read-only'
+
+enum Permissions {
+  ADMIN ,
+  READ_ONLY 
+}
+
+const you = {
   firstName: "John",
   lastName: "Brown",
+  permissions: Permissions.ADMIN,
   isReturning: true,
   age: 35,
   stayedAt: ["floride-home", "oman-flat", "tokyo-bungalow"],
 }
-
-//properties
+  //properties
 
 const properties: {
   image: string,
@@ -108,6 +120,7 @@ const properties: {
     isAvailable: true,
   }
 ]
+
 
   showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser); //Dynamically updates showReviewTotal function
 
