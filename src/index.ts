@@ -5,7 +5,7 @@ const propertyContainer = document.querySelector(".properties")
 const footer = document.querySelector(".footer")
 import { showReviewTotal, populateUser } from "./utils";
 import {Permissions, LoyaltyUser} from "./enums"
-let isOpen : boolean
+let isLoggedIn : boolean
 
 //Array of review objects
 const reviews: any[] = [
@@ -31,10 +31,6 @@ const reviews: any[] = [
 ];
 
 //Enum for user permissions
-enum Permissions {
-  ADMIN ,
-  READ_ONLY 
-}
 
 const you = {
   firstName: "John",
@@ -105,7 +101,16 @@ const properties: {
 
 populateUser(you.isReturning, you.firstName)
 
-//Add the properties
+let authorityStatus : any
+isLoggedIn = false
+ function showDetails(authorityStatus: boolean | Permissions, element : HTMLElement, price: number) {
+  if (authorityStatus) {
+ const priceDisplay = document.createElement("div");
+ priceDisplay.innerHTML = price.toString() + '/night'
+element.appendChild(priceDisplay);
+  }
+}
+ //Add the properties
 for(let i = 0; i < properties.length; i++){
   const card = document.createElement("div");
   card.classList.add("card");
@@ -114,6 +119,7 @@ for(let i = 0; i < properties.length; i++){
   image.setAttribute('src', properties[i].image) 
   card.appendChild(image);
   propertyContainer.appendChild(card);
+  showDetails(you.permissions, card, properties[i].price);
 }
 
 //Current Location,time and temperature
