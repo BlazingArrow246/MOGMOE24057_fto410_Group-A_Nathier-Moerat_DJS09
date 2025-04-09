@@ -5,9 +5,7 @@
 
  //Selecting elements from the DOM   
 
-const returningUserDisplay = document.querySelector("#returning-user");
-const userNameDisplay = document.querySelector("#user");
-const reviewTotalDisplay = document.querySelector("#reviews") as HTMLElement | null;
+import { showReviewTotal, populateUser } from "./utils";
 let isOpen : boolean
 
 //Array of review objects
@@ -38,21 +36,6 @@ date: string,
   },
 ];
 
-//Displays name of the reviewer, total number of reviews, and if they are a loyalty user
-
-function showReviewTotal (value : number, reviewer: string, isLoyalty : boolean) {
-  const iconDisplay = isLoyalty ? "⭐" : "👤";
-  
-    reviewTotalDisplay.innerHTML = 
-      'review total: ' +
-      value.toString() +  //Reviews total
-      ' ' +
-     '| last reviewed by ' +
-     reviewer +' ' + iconDisplay
-}
-
-showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser); //Dynamically updates showReviewTotal function
-
 //user data object
 const you : {
   firstName : string,
@@ -66,15 +49,27 @@ const you : {
   isReturning: true,
   age: 35,
   stayedAt: ["floride-home", "oman-flat", "tokyo-bungalow"],
-},
+}
 
-//Updates DOM with user information
-function populateUser(isReturning: boolean, userName : string){
-  if(isReturning == true){
-        returningUserDisplay.innerHTML = "back";
-    }
-    userNameDisplay.innerHTML = userName;
+//properties
+
+const properties: {
+  image: string,
+  title: string,
+  price: number,
+  location: {
+    firstLine: string,
+    city: string,
+    country: string,
+    code: number,
   },
+  contact : string,
+  isAvailable: boolean,
+}[] = [
+  {
+  }
+]
 
+  showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser); //Dynamically updates showReviewTotal function
 
 populateUser(you.isReturning, you.firstName)
