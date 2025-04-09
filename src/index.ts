@@ -5,6 +5,7 @@
 
  //Selecting elements from the DOM   
 const propertyContainer = document.querySelector(".properties") 
+const footer = document.querySelector(".footer")
 
 import { showReviewTotal, populateUser } from "./utils";
 let isOpen : boolean
@@ -122,3 +123,7 @@ for(let i = 0; i < properties.length; i++){
   card.appendChild(image);
   propertyContainer.appendChild(card);
 }
+
+//Current Location,time and temperature
+let currentLocation: [string, string, number] = ["London", "11:35", 20]
+footer.innerHTML = currentLocation[0] + " " + currentLocation[0] + " " + currentLocation[1] + " " + currentLocation[2] + ""; 
