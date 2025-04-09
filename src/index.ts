@@ -8,11 +8,10 @@
 const returningUserDisplay = document.querySelector("#returning-user");
 const userNameDisplay = document.querySelector("#user");
 const reviewTotalDisplay = document.querySelector("#reviews") as HTMLElement | null;
-
 let isOpen : boolean
 
 //Array of review objects
-const reviews: { name: string; stars: number; loyaltyUser: boolean; date: string }[] = [
+const reviews: [ 
   {
     name: "Sheia",
     stars: 5,
@@ -37,35 +36,39 @@ const reviews: { name: string; stars: number; loyaltyUser: boolean; date: string
 
 function showReviewTotal (value : number, reviewer: string, isLoyalty : boolean) {
   const iconDisplay = isLoyalty ? "⭐" : "👤";
-  if (reviewTotalDisplay) {
+  
     reviewTotalDisplay.innerHTML = 
       'review total: ' +
       value.toString() +  //Reviews total
       ' ' +
-      iconDisplay +  //Loyalty icon
-      ' ' +
-      reviewer;  //Reviewer name
-  }
-  reviewer;
+     '| last reviewed by ' +
+     reviewer +' ' + iconDisplay
 }
 
 showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser); //Dynamically updates showReviewTotal function
 
 //user data object
-const you = {
-  userName: "Bobby",
+const you : {
+  firstName : string,
+  lastName : string,
+  isReturning : boolean,
+  age : number,
+  stayedAt: string[],
+} = {
+  firstName: "John",
+  lastName: "Brown",
   isReturning: true,
-}
+  age: 35,
+  stayedAt: ["floride-home", "oman-flat", "tokyo-bungalow"],
+},
+
 //Updates DOM with user information
 function populateUser(isReturning: boolean, userName : string){
   if(isReturning){
-    if (returningUserDisplay) {
         returningUserDisplay.innerHTML = "back";
     }
-  }
-  if (userNameDisplay) {
     userNameDisplay.innerHTML = userName;
-  }
-}
+  },
 
-populateUser(you.isReturning, you.userName)
+
+populateUser(you.isReturning, you.firstName)
