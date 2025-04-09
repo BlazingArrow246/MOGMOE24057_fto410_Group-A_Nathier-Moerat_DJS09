@@ -67,6 +67,43 @@ const properties: {
   isAvailable: boolean,
 }[] = [
   {
+    image: "",
+    title: "Columbian Shack",
+    price: 45,
+    location: {
+      firstLine: "Shack 37",
+      city: "Bogota",
+      country: "Columbia",
+      code: 45632,
+    },
+    contact: "marywinkle@gmail.com",
+    isAvailable: true,
+  },
+  {
+    image: "",
+    title: "Polish Cottage",
+    price: 34,
+    location: {
+      firstLine: "no 23",
+      city: "Gdansk",
+      country: "Poland",
+      code: 343903,
+    },
+    contact: "garydavis@hotmail.com",
+    isAvailable: false,
+  },
+  {
+    image: "",
+    title: "London Flat",
+    price: 23,
+    location: {
+      firstLine: "flat 15",
+      city: "London",
+      country: "United Kingdom",
+      code: 67890,
+    },
+    contact: "andyluger@aol,com",
+    isAvailable: true,
   }
 ]
 
