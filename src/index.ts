@@ -8,13 +8,7 @@ import {Permissions, LoyaltyUser} from "./enums"
 let isOpen : boolean
 
 //Array of review objects
-const reviews: {
-
-name: string,
-stars: number,
-loyaltyUser: boolean,
-date: string,
-}[] = [
+const reviews: any[] = [
   {
     name: "Sheia",
     stars: 5,
@@ -32,27 +26,11 @@ date: string,
     stars: 4,
     loyaltyUser: LoyaltyUser.SILVER_USER,
     date: "27-03-2021",
+    description: 'Great hosts, location and service',
   },
 ];
 
-//user data object
-//const you : {
- // firstName : string,
- // lastName : string,
- // isReturning : boolean,
- // age : number,
- // stayedAt: string[],
-//} = {
-  //firstName: "John",
- // lastName: "Brown",
- // isReturning: true,
-  //age: 35,
-  //stayedAt: ["floride-home", "oman-flat", "tokyo-bungalow"],
-//}
-
-const ADMIN ='admin'
-const READ_ONLY = 'read-only'
-
+//Enum for user permissions
 enum Permissions {
   ADMIN ,
   READ_ONLY 
