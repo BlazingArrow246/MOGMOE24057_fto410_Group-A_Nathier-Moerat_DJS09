@@ -1,2 +1,2 @@
-export type Price = 45 | 35 | 25
-export type Country = 'Columbia' | 'Poland' | 'United Kingdom'
+export type Price = 25 | 30 | 35 | 45
+export type Country = 'Columbia' | 'Poland' | 'United Kingdom' | 'Malaysia' 

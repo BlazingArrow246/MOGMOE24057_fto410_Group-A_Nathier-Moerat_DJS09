@@ -73,7 +73,7 @@ interface Property {
     firstLine: string;
     city: string;
     country: Country;
-    code: number;
+    code: number | string;
   };
   contact: [number, string];
   isAvailable: boolean;
@@ -117,9 +117,22 @@ const properties: Property[] = [
       country: "United Kingdom",
       code: 67890,
     },
-    contact: [+274956382345, 'andyluger@aol,com'],
+    contact: [+274956382345, 'andyluger@aol.com'],
     isAvailable: true,
   }
+{
+  image: "images/malaysian-hotel.jpg",
+  title: "Malia Hotel",
+  price: 35,
+  location: {
+    firstLine: "Room 4",
+    city: "Malia",
+    country: "Malaysia",
+    code: 38473,
+  },
+  contact: [+273956392317, 'lee34@gmail.com'],
+  isAvailable: false,
+}
 ]
 
 
