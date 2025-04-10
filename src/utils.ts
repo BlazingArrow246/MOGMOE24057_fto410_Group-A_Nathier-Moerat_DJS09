@@ -32,24 +32,14 @@ export function showDetils(value: boolean | Permissions, element : HTMLDivElemen
 }
 }
    
-export function makeMultiple(value: number){
-    if(value > 1){
+export function makeMultiple(value: number) : string{
+    if(value > 1 || value == 0){
         return 's'
     }   else return ''
 }
 
-//Broken code
-export function getTopReviews(reviews: {
-  name: string;
-  stars: number;
-  loyalty: LoyaltyUser;
-  date: string;
-}[]) : {
-  name: string;
-  stars: number;
-  loyalty: LoyaltyUser;
-  date: string;
-}[] {
+//Get top 2 reviews
+export function getTopReviews(reviews: Review[]): Review[] { 
   const sortedReviews = reviews.sort((a, b) => b.stars - a.stars);
 return sortedReviews.slice(0, 2);
 }

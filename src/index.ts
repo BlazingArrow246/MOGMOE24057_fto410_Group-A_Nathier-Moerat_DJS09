@@ -5,7 +5,7 @@ const propertyContainer = document.querySelector(".properties")
 const footer = document.querySelector(".footer")
 import { showReviewTotal, populateUser, showDetails, getTopTwoReviews } from "./utils";
 import {Price,Country} from "./types";
-import { Review } from "./types";
+import { Review } from "./interfaces";
 const reviewContainer = document.querySelector(".reviews") 
 const container = document.querySelector(".container") 
 const button = document.querySelector(".button") 
@@ -19,7 +19,7 @@ enum Permissions {
 }
 
 enum LoyaltyUser {
-  GOLD_USER = "GOLLD-USER",
+  GOLD_USER = "GOLD-USER",
   SILVER_USER = "SILVER-USER",
   BRONZE_USER = "BRONZE-USER",
 }
