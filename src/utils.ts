@@ -8,35 +8,32 @@ export function showReviewTotal (value : number, reviewer: string, isLoyalty : L
     const iconDisplay = LoyaltyUser.GOLD_USER ? "⭐" : "👤";
     
       reviewTotalDisplay.innerHTML = 
-        'review total: ' +
         value.toString() +  //Reviews total
-        ' ' +
+        'Review' +
+        makeMultiple(value) +
        '| last reviewed by ' +
-       reviewer +' ' + iconDisplay
+       reviewer + '' + iconDisplay
   }
 
   //Updates DOM with user information
 
   export function populateUser(isReturning : boolean , userName: string ){
-    if(isReturning == true){
+    if(isReturning){
     returningUserDisplay.innerHTML = "back"
 }
+userNameDisplay.innerHTML = userName
+  }
 
 export function showDetils(value: boolean | Permissions, element : HTMLDivElement, price: number)
 {if(value){
-    const priceDisplay = document.querySelector("#price") as HTMLElement | null;
+    const priceDisplay = document.createElement("div");
     priceDisplay.innerHTML = price.toString() + '/night'
     element.appendChild (priceDisplay);
 }
-userNameDisplay.innerHTML = userName
-}
-
-function add(firstValue : number , secondValue : number) : number{
-    return firstValue + secondValue
 }
    
 export function makeMultiple(value: number){
     if(value > 1){
         return 's'
-    }
+    }   else return ''
 }
