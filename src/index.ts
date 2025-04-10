@@ -1,6 +1,6 @@
 
 
- Selecting elements from the DOM   
+ //Selecting elements from the DOM   
 const propertyContainer = document.querySelector(".properties") 
 const footer = document.querySelector(".footer")
 import { showReviewTotal, populateUser, showDetails, getTopTwoReviews } from "./utils";
@@ -22,6 +22,12 @@ enum LoyaltyUser {
   GOLD_USER = "GOLD-USER",
   SILVER_USER = "SILVER-USER",
   BRONZE_USER = "BRONZE-USER",
+}
+  interface Review {
+    name: string;
+    stars: number;
+    loyaltyUser: LoyaltyUser; 
+    date: string;
 }
 
 
@@ -59,20 +65,22 @@ const you = {
   stayedAt: ["floride-home", "oman-flat", "tokyo-bungalow"],
 }
   //properties
-
-const properties: {
-  image: string,
-  title: string,
-  price: number,
+interface Property {
+  image: string;
+  title: string;
+  price: Price;
   location: {
-    firstLine: string,
-    city: string,
-    country: Country,
-    code: number,
-  },
-  contact : [number, string],
-  isAvailable: boolean,
-}[] = [
+    firstLine: string;
+    city: string;
+    country: Country;
+    code: number;
+  };
+  contact: [number, string];
+  isAvailable: boolean;
+}
+
+const properties: Property[] = [
+
   {
     image: "images/columbia-property.jpg",
     title: "Columbian Shack",
@@ -164,18 +172,6 @@ button.addEventListener ('click', () => addReviews(reviews))
 let currentLocation: [string, string, number] = ["London", "11:35", 20]
 footer.innerHTML = currentLocation[0] + " " + currentLocation[0] + " " + currentLocation[1] + " " + currentLocation[2] + ""; 
 
-//Classes 
-// class Car {
-//make: string
-// year: number
-//color: string
-// constructor(make: string, year: number, color: string) {
-//   this.make = make;
-//   this.year = year;
-//   this.color = color;
-// }
-//}
-
 class MainProperty {
   src: string
   title: string
@@ -186,3 +182,18 @@ class MainProperty {
     this.reviews = reviews;
   }
 }
+
+let yourMainProperty = new MainProperty
+('images/columbia-property.jpg',
+  'Italian House',
+[{
+  name: "Sheia",
+  stars: 5,
+  loyaltyUser: LoyaltyUser.GOLD_USER,
+  date: "01-04-2021",
+}])
+
+const mainImageContainer = document.querySelector(".main-image")
+const Image = document.createElement("img")
+Image.setAttribute('src', yourMainProperty.src)
+mainImageContainer.appendChild(Image)
