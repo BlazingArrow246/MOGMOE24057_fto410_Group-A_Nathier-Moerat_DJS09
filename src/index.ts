@@ -4,7 +4,8 @@
 const propertyContainer = document.querySelector(".properties") 
 const footer = document.querySelector(".footer")
 import { showReviewTotal, populateUser } from "./utils";
-import {Permissions, LoyaltyUser} from "./enums"
+import {Permissions, LoyaltyUser} from "./enums",
+import {Price,Country} from "./types";
 let isLoggedIn : boolean
 
 //Array of review objects
@@ -49,7 +50,7 @@ const properties: {
   location: {
     firstLine: string,
     city: string,
-    country: string,
+    country: Country,
     code: number,
   },
   contact : [number, string],
@@ -120,6 +121,7 @@ for(let i = 0; i < properties.length; i++){
   card.appendChild(image);
   propertyContainer.appendChild(card);
   showDetails(you.permissions, card, properties[i].price);
+  propertyContainer.appendChild(card);
 }
 
 //Current Location,time and temperature
