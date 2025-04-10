@@ -1,4 +1,4 @@
-import { LoyaltyUser } from "./enums";
+import { LoyaltyUser, Permissions } from "./enums";
 
 const returningUserDisplay = document.querySelector("#returning-user");
 const userNameDisplay = document.querySelector("#user");
@@ -21,23 +21,22 @@ export function showReviewTotal (value : number, reviewer: string, isLoyalty : L
     if(isReturning == true){
     returningUserDisplay.innerHTML = "back"
 }
+
+export function showDetils(value: boolean | Permissions, element : HTMLDivElement, price: number)
+{if(value){
+    const priceDisplay = document.querySelector("#price") as HTMLElement | null;
+    priceDisplay.innerHTML = price.toString() + '/night'
+    element.appendChild (priceDisplay);
+}
 userNameDisplay.innerHTML = userName
 }
 
-function add(firstValue : (number | string), secondValue : (number | string)) {
-    let result
-    if(typeof firstValue === "number" && typeof secondValue === "number") {
-        result = firstValue + secondValue
+function add(firstValue : number , secondValue : number) : number{
+    return firstValue + secondValue
+}
+   
+export function makeMultiple(value: number){
+    if(value > 1){
+        return 's'
     }
-    if (typeof firstValue === "string" && typeof secondValue === "string") {
-        result = firstValue.toString() +' '+ secondValue.toString()
-    }
-    if (typeof firstValue === "number" && typeof secondValue === "string") {
-        console.log ("cannot perform this addition")
-    }
-    if (typeof firstValue === "string" && typeof secondValue === "number") {
-   console.log ("cannot perform this addition")
-    }
-  }
-  const combinedReviews = add(5, 1)
-  const firstNameLastName = add('Ania', 'Kowalska')
+}
