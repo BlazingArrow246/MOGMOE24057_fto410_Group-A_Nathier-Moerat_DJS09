@@ -1,35 +1,18 @@
 
 
  //Selecting elements from the DOM   
-const propertyContainer = document.querySelector(".properties") 
-const footer = document.querySelector(".footer")
+
 import { showReviewTotal, populateUser, showDetails, getTopTwoReviews } from "./utils";
-import {Price,Country} from "./types";
-import { Review } from "./interfaces";
+import {Permissions, LoyaltyUser} from "./enums";
+import { Review, Property } from "./interfaces";
+import {MainProperty} from "./classes"
 const reviewContainer = document.querySelector(".reviews") 
 const container = document.querySelector(".container") 
 const button = document.querySelector(".button") 
 const footer = document.querySelector(".footer") 
+const propertyContainer = document.querySelector(".properties") 
 
 let isLoggedIn : boolean
-
-enum Permissions {
-  ADMIN = "admin",  
-  READ_ONLY = "read-only",
-}
-
-enum LoyaltyUser {
-  GOLD_USER = "GOLD-USER",
-  SILVER_USER = "SILVER-USER",
-  BRONZE_USER = "BRONZE-USER",
-}
-  interface Review {
-    name: string;
-    stars: number;
-    loyaltyUser: LoyaltyUser; 
-    date: string;
-}
-
 
 //Array of review objects
 const reviews: Review[] = [
@@ -50,7 +33,7 @@ const reviews: Review[] = [
     stars: 4,
     loyaltyUser: LoyaltyUser.SILVER_USER,
     date: "27-03-2021",
-    description: 'Great hosts, location and service',
+  
   },
 ];
 
@@ -65,20 +48,6 @@ const you = {
   stayedAt: ["floride-home", "oman-flat", "tokyo-bungalow"],
 }
   //properties
-interface Property {
-  image: string;
-  title: string;
-  price: Price;
-  location: {
-    firstLine: string;
-    city: string;
-    country: Country;
-    code: number | string;
-  };
-  contact: [number, string];
-  isAvailable: boolean;
-}
-
 const properties: Property[] = [
 
   {
@@ -119,7 +88,7 @@ const properties: Property[] = [
     },
     contact: [+274956382345, 'andyluger@aol.com'],
     isAvailable: true,
-  }
+  },
 {
   image: "images/malaysian-hotel.jpg",
   title: "Malia Hotel",
@@ -140,16 +109,6 @@ const properties: Property[] = [
 
 populateUser(you.isReturning, you.firstName)
 
-let authorityStatus : any
-isLoggedIn = false
-
- function showDetails(authorityStatus: boolean | Permissions, element : HTMLElement, price: number) {
-  if (authorityStatus) {
- const priceDisplay = document.createElement("div");
- priceDisplay.innerHTML = price.toString() + '/night'
-element.appendChild(priceDisplay);
-  }
-}
  //Add the properties
 for(let i = 0; i < properties.length; i++){
   const card = document.createElement("div");
@@ -158,12 +117,10 @@ for(let i = 0; i < properties.length; i++){
   const image = document.createElement("img")
   image.setAttribute('src', properties[i].image) 
   card.appendChild(image);
-  propertyContainer.appendChild(card);
   showDetails(you.permissions, card, properties[i].price);
   propertyContainer.appendChild(card);
 }
 
-//Broken code
 let count = 0
 function addReviews(array: Review[]) : void {
   if(!count){
@@ -189,7 +146,7 @@ class MainProperty {
   src: string
   title: string
   reviews: Review[]
-  constructor(src, title, reviews) {
+  constructor(src: string, title: string, reviews: Review[]) {
     this.src = src;
     this.title = title;
     this.reviews = reviews;
@@ -200,10 +157,10 @@ let yourMainProperty = new MainProperty
 ('images/columbia-property.jpg',
   'Italian House',
 [{
-  name: "Sheia",
+  name: "Olive",
   stars: 5,
   loyaltyUser: LoyaltyUser.GOLD_USER,
-  date: "01-04-2021",
+  date: "12-04-2021",
 }])
 
 const mainImageContainer = document.querySelector(".main-image")
