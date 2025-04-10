@@ -37,3 +37,19 @@ export function makeMultiple(value: number){
         return 's'
     }   else return ''
 }
+
+//Broken code
+export function getTopReviews(reviews: {
+  name: string;
+  stars: number;
+  loyalty: LoyaltyUser;
+  date: string;
+}[]) : {
+  name: string;
+  stars: number;
+  loyalty: LoyaltyUser;
+  date: string;
+}[] {
+  const sortedReviews = reviews.sort((a, b) => b.stars - a.stars);
+return sortedReviews.slice(0, 2);
+}

@@ -1,11 +1,15 @@
 
 
- //Selecting elements from the DOM   
+ Selecting elements from the DOM   
 const propertyContainer = document.querySelector(".properties") 
 const footer = document.querySelector(".footer")
-import { showReviewTotal, populateUser } from "./utils";
-import {Permissions, LoyaltyUser} from "./enums",
+import { showReviewTotal, populateUser, showDetails, getTopTwoReviews } from "./utils";
 import {Price,Country} from "./types";
+const reviewContainer = document.querySelector(".reviews") 
+const container = document.querySelector(".container") 
+const button = document.querySelector(".button") 
+const footer = document.querySelector(".footer") 
+
 let isLoggedIn : boolean
 
 //Array of review objects
@@ -123,6 +127,29 @@ for(let i = 0; i < properties.length; i++){
   showDetails(you.permissions, card, properties[i].price);
   propertyContainer.appendChild(card);
 }
+
+//Broken code
+let count = 0
+function addReviews(array: {
+  name: string;
+  stars: number;
+  loyalty: LoyaltyUser; 
+  date: string;
+}[]) : void {
+  if(!count){
+    count++
+    const topTwo = getTopTwoReviews(array);
+    for (let i = 0; i < topTwo.length; i++) {
+      const card = document.createElement("div");
+      card.classList.add("review-card");
+      card.innerHTML = topTwo[i].stars + " " + topTwo[i].stars + " " + topTwo[i].loyalty + " " + topTwo[i].date;
+      reviewContainer.appendChild(card);
+    }
+    container.removeChild(button)
+  }
+}
+
+button.addEventListener ('click', () => addReviews(reviews))
 
 //Current Location,time and temperature
 let currentLocation: [string, string, number] = ["London", "11:35", 20]
