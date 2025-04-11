@@ -1,5 +1,5 @@
 import { LoyaltyUser, Permissions } from "./enums";
-
+import { Review } from "./interfaces";
 const returningUserDisplay = document.querySelector("#returning-user");
 const userNameDisplay = document.querySelector("#user");
 const reviewTotalDisplay = document.querySelector("#reviews") as HTMLElement | null;
@@ -24,7 +24,7 @@ export function showReviewTotal (value : number, reviewer: string, isLoyalty : L
 userNameDisplay.innerHTML = userName
   }
 
-export function showDetils(value: boolean | Permissions, element : HTMLDivElement, price: number)
+export function showDetails(value: boolean | Permissions, element : HTMLDivElement, price: number)
 {if(value){
     const priceDisplay = document.createElement("div");
     priceDisplay.innerHTML = price.toString() + '/night'

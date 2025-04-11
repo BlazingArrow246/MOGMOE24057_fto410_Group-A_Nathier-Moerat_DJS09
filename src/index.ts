@@ -2,15 +2,15 @@
 
  //Selecting elements from the DOM   
 
-import { showReviewTotal, populateUser, showDetails, getTopTwoReviews } from "./utils";
+import { showReviewTotal, populateUser, showDetails, getTopReviews } from "./utils";
 import {Permissions, LoyaltyUser} from "./enums";
 import { Review, Property } from "./interfaces";
-import {MainProperty} from "./classes"
-const reviewContainer = document.querySelector(".reviews") 
-const container = document.querySelector(".container") 
-const button = document.querySelector(".button") 
-const footer = document.querySelector(".footer") 
-const propertyContainer = document.querySelector(".properties") 
+import MainProperty from "./classes"
+const reviewContainer = document.querySelector(".reviews")! 
+const container = document.querySelector(".container")! 
+const button = document.querySelector(".button")! 
+const footer = document.querySelector(".footer") !
+const propertyContainer = document.querySelector(".properties") !
 
 let isLoggedIn : boolean
 
@@ -125,7 +125,7 @@ let count = 0
 function addReviews(array: Review[]) : void {
   if(!count){
     count++
-    const topTwo = getTopTwoReviews(array);
+    const topTwo = getTopReviews(array);
     for (let i = 0; i < topTwo.length; i++) {
       const card = document.createElement("div");
       card.classList.add("review-card");
@@ -140,18 +140,7 @@ button.addEventListener ('click', () => addReviews(reviews))
 
 //Current Location,time and temperature
 let currentLocation: [string, string, number] = ["London", "11:35", 20]
-footer.innerHTML = currentLocation[0] + " " + currentLocation[0] + " " + currentLocation[1] + " " + currentLocation[2] + ""; 
-
-class MainProperty {
-  src: string
-  title: string
-  reviews: Review[]
-  constructor(src: string, title: string, reviews: Review[]) {
-    this.src = src;
-    this.title = title;
-    this.reviews = reviews;
-  }
-}
+footer.innerHTML = currentLocation[0] + " " + currentLocation[1] + " " + currentLocation[2] + " " + "°C"; 
 
 let yourMainProperty = new MainProperty
 ('images/columbia-property.jpg',
