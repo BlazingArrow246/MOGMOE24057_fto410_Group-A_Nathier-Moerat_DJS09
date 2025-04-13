@@ -39,7 +39,7 @@ const reviews: Review[] = [
 
 //Enum for user permissions
 
-const you = {
+const you = {   //Object for current user
   firstName: "John",
   lastName: "Brown",
   permissions: Permissions.ADMIN,
@@ -47,7 +47,7 @@ const you = {
   age: 35,
   stayedAt: ["floride-home", "oman-flat", "tokyo-bungalow"],
 }
-  //properties
+  //Array of properties
 const properties: Property[] = [
 
   {
@@ -107,40 +107,48 @@ const properties: Property[] = [
 
   showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser); //Dynamically updates showReviewTotal function
 
+  //Display user details
 populateUser(you.isReturning, you.firstName)
 
  //Add the properties
+ //Loop through the properties array and create a card for each property
+
 for(let i = 0; i < properties.length; i++){
   const card = document.createElement("div");
   card.classList.add("card");
   card.innerHTML = properties[i].title;
+
   const image = document.createElement("img")
   image.setAttribute('src', properties[i].image) 
   card.appendChild(image);
+
   showDetails(you.permissions, card, properties[i].price);
-  propertyContainer.appendChild(card);
+  propertyContainer.appendChild(card); //// Adds the card to the `.properties` container
 }
 
 let count = 0
 function addReviews(array: Review[]) : void {
   if(!count){
     count++
-    const topTwo = getTopReviews(array);
+    const topTwo = getTopReviews(array); //Fetches top 2 reviews
     for (let i = 0; i < topTwo.length; i++) {
       const card = document.createElement("div");
       card.classList.add("review-card");
       card.innerHTML = topTwo[i].stars + "stars from " + topTwo[i].name
-      reviewContainer.appendChild(card);
+      reviewContainer.appendChild(card); // Adds the card to the `.reviews` container
     }
-    container.removeChild(button)
+    container.removeChild(button) // Removes the button after reviews are displayed
   }
 }
 
 button.addEventListener ('click', () => addReviews(reviews))
 
-//Current Location,time and temperature
+//User current Location,time and temperature in footer
+
 let currentLocation: [string, string, number] = ["London", "11:35", 20]
 footer.innerHTML = currentLocation[0] + " " + currentLocation[1] + " " + currentLocation[2] + " " + "°C"; 
+
+//Shows the featured property
 
 let yourMainProperty = new MainProperty
 ('images/columbia-property.jpg',
